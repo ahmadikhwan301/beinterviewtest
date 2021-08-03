@@ -10,18 +10,6 @@ class ProductCard extends StatelessWidget {
   final ValueChanged<Product> onSelected;
   ProductCard({Key key, this.product, this.onSelected}) : super(key: key);
 
-//   @override
-//   _ProductCardState createState() => _ProductCardState();
-// }
-
-// class _ProductCardState extends State<ProductCard> {
-//   Product product;
-//   @override
-//   void initState() {
-//     product = widget.product;
-//     super.initState();
-//   }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,17 +26,6 @@ class ProductCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Positioned(
-              left: 0,
-              top: 0,
-              child: IconButton(
-                icon: Icon(
-                  product.isliked ? Icons.favorite : Icons.favorite_border,
-                  color: product.isliked ? LightColor.red : LightColor.iconColor,
-                ),
-                onPressed: () {},
-              ),
-            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -66,7 +43,6 @@ class ProductCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                // SizedBox(height: 5),
                 TitleText(
                   text: product.name,
                   fontSize: product.isSelected ? 16 : 14,

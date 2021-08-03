@@ -6,8 +6,6 @@ import 'package:bwinterviewtest/widgets/titleText.dart';
 import 'package:bwinterviewtest/widgets/extensions.dart';
 
 class ProductIcon extends StatelessWidget {
-  // final String imagePath;
-  // final String text;
   final ValueChanged<Category> onSelected;
   final Category model;
   ProductIcon({Key key, this.model, this.onSelected}) : super(key: key);

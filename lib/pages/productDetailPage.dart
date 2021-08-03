@@ -12,21 +12,15 @@ class ProductDetailPage extends StatefulWidget {
   _ProductDetailPageState createState() => _ProductDetailPageState();
 }
 
-class _ProductDetailPageState extends State<ProductDetailPage> with TickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> animation;
+class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    animation =
-        Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: controller, curve: Curves.easeInToLinear));
-    controller.forward();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    // controller.dispose();
     super.dispose();
   }
 
@@ -47,15 +41,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> with TickerProvid
               Navigator.of(context).pop();
             },
           ),
-          // _icon(isLiked ? Icons.favorite : Icons.favorite_border,
-          //     color: isLiked ? LightColor.red : LightColor.lightGrey,
-          //     size: 15,
-          //     padding: 12,
-          //     isOutLine: false, onPressed: () {
-          //   setState(() {
-          //     isLiked = !isLiked;
-          //   });
-          // }),
         ],
       ),
     );
@@ -91,65 +76,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> with TickerProvid
   }
 
   Widget _productImage() {
-    return AnimatedBuilder(
-      builder: (context, child) {
-        return AnimatedOpacity(
-          duration: Duration(milliseconds: 500),
-          opacity: animation.value,
-          child: child,
-        );
-      },
-      animation: animation,
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: <Widget>[
-          TitleText(
-            text: "AIR",
-            fontSize: 160,
-            color: LightColor.lightGrey,
-          ),
-          Image.asset('assets/show_1.png')
-        ],
-      ),
-    );
-  }
-
-  Widget _categoryWidget() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 0),
-      width: AppTheme.fullWidth(context),
-      height: 80,
-      child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: AppData.showThumbnailList.map((x) => _thumbnail(x)).toList()),
-    );
-  }
-
-  Widget _thumbnail(String image) {
-    return AnimatedBuilder(
-      animation: animation,
-      //  builder: null,
-      builder: (context, child) => AnimatedOpacity(
-        opacity: animation.value,
-        duration: Duration(milliseconds: 500),
-        child: child,
-      ),
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        child: Container(
-          height: 40,
-          width: 50,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: LightColor.grey,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(13)),
-            // color: Theme.of(context).backgroundColor,
-          ),
-          child: Image.asset(image),
-        ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13))),
-      ),
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: <Widget>[
+        TitleText(
+          text: "AIR",
+          fontSize: 160,
+          color: LightColor.lightGrey,
+        ),
+        Image.asset('assets/show_1.png')
+      ],
     );
   }
 
@@ -371,7 +307,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> with TickerProvid
                 children: <Widget>[
                   _appBar(),
                   _productImage(),
-                  _categoryWidget(),
                 ],
               ),
               _detailWidget()

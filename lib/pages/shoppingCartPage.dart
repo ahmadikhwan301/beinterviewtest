@@ -8,6 +8,27 @@ import 'package:bwinterviewtest/widgets/titleText.dart';
 class ShoppingCartPage extends StatelessWidget {
   const ShoppingCartPage({Key key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: AppTheme.padding,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _cartItems(),
+            Divider(
+              thickness: 1,
+              height: 70,
+            ),
+            _price(),
+            SizedBox(height: 30),
+            _submitButton(context),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _cartItems() {
     return Column(children: AppData.cartList.map((x) => _item(x)).toList());
   }
@@ -124,26 +145,5 @@ class ShoppingCartPage extends StatelessWidget {
       price += x.price * x.id;
     });
     return price;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: AppTheme.padding,
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _cartItems(),
-            Divider(
-              thickness: 1,
-              height: 70,
-            ),
-            _price(),
-            SizedBox(height: 30),
-            _submitButton(context),
-          ],
-        ),
-      ),
-    );
   }
 }
